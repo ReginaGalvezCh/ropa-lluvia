@@ -1,6 +1,6 @@
-# Base de los proyectos maker
+# Método compartido de los proyectos maker
 
-Este paquete prepara cuatro repositorios independientes: plantas, ropa tendida, recordatorio de salida y luz de disponibilidad. Cada carpeta puede publicarse como un repositorio privado distinto. Son propuestas iniciales para revisar; no describen dispositivos construidos ni integraciones ya verificadas.
+Este repositorio forma parte de cuatro proyectos independientes: plantas, ropa tendida, recordatorio de salida y luz de disponibilidad. La [página de coordinación en Notion](https://app.notion.com/p/416504754f0881afaaa6e4297e39c813) mantiene el mapa y las decisiones transversales. Las especificaciones iniciales son propuestas para revisar; no describen dispositivos construidos ni integraciones verificadas.
 
 ## Método de trabajo
 
