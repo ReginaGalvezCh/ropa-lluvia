@@ -14,6 +14,16 @@ Initial definition. No rain sensor, placement, or physical prototype has been va
 - Show an unknown state if measurement fails or becomes stale.
 - Consider a central-display alert later.
 
+## Technology map
+
+| Area | Current direction | Status |
+| --- | --- | --- |
+| Rain sensing | Observe rain near the drying area and distinguish sustained rain from splashes or condensation. | Required capability; sensor and mounting open. |
+| Manual control and local alert | A visible “laundry outside” control and an alert that works locally. | Pilot direction; switch, indicator, and alert hardware open. |
+| Connectivity | Local Wi-Fi may carry a later alert to the central display. | Candidate; not needed for the first local test. |
+| Platform and power | Controller, firmware, protected enclosure, and power source. | Open pending balcony observations. |
+| Documentation and localization | Living English specifications; English and Spanish product text. Use Lingui if a JavaScript/TypeScript interface is built. | Language direction agreed; Spec Kit and Lingui not installed. |
+
 ## Documents
 
 - [Pilot specification](specs/001-rain-alert/spec.md).
