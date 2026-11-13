@@ -1,6 +1,6 @@
 # Shared method for the maker projects
 
-This repository is one of four independent projects: plant monitoring, rain alerts for hanging laundry, an exit reminder, and an availability light. The [program coordination page in Notion](https://app.notion.com/p/416504754f0881afaaa6e4297e39c813) tracks the map and cross-project decisions. The initial specifications are proposals for review; they do not describe built devices or verified integrations.
+This repository is one of four independent projects: plant monitoring, rain alerts for hanging laundry, an exit reminder, and an availability light. Cross-project decisions will be recorded in the repositories they affect, with links between related issues or decision records. The initial specifications are proposals for review; they do not describe built devices or verified integrations.
 
 ## Working method
 
