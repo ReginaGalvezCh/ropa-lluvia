@@ -1,71 +1,71 @@
-# Especificación 001: alerta de lluvia con ropa tendida
+# Specification 001: Rain Alert for Hanging Laundry
 
-**Estado:** propuesta para validar. No hay ubicación, sensor ni prototipo físico validados.
+**Status:** proposal for validation. No location, sensor, or physical prototype has been validated.
 
-## Propósito y escena
+## Purpose and use scenario
 
-Dar tiempo para retirar ropa tendida en un balcón estrecho cuando aparece lluvia que podría alcanzarla. La persona indica que dejó ropa afuera y puede alejarse del balcón. Este piloto no mide si la ropa está seca.
+Give the person time to bring in laundry hanging on a narrow balcony when rain could reach it. The person indicates that laundry was left outside and may move away from the balcony. This pilot does not measure whether the laundry is dry.
 
-## Alcance del primer piloto
+## First pilot scope
 
-- La persona activa o desactiva manualmente «hay ropa afuera». El estado debe ser visible junto al tendedero y fácil de cambiar al colgar o retirar la ropa.
-- El módulo observa lluvia en un punto cercano y representativo de la exposición de la ropa.
-- Si «hay ropa afuera» está activo y se detecta lluvia sostenida, emite una señal local.
-- Si «hay ropa afuera» está inactivo, no emite un aviso para entrar ropa.
-- Si la medición falla o vence, señala «estado de lluvia desconocido», sin tratarlo como seco.
-- Evita repetir continuamente el mismo aviso. La forma de silenciarlo y restablecerlo se decidirá tras observar el uso.
+- The person manually turns the “laundry outside” state on or off. Its current value must be visible near the drying area and easy to change when hanging or removing laundry.
+- The module observes rain at a nearby point representative of the laundry's exposure.
+- If “laundry outside” is active and sustained rain is detected, it gives a local signal.
+- If “laundry outside” is inactive, it does not give a bring-in-laundry alert.
+- If measurement fails or becomes stale, it reports “rain state unknown” rather than treating the state as dry.
+- It does not continuously repeat the same alert. How to silence and reset it will be decided after observing use.
 
-La pantalla central y el transporte de mensajes quedan fuera del piloto. Una integración futura deberá entregar origen, tipo, severidad, hora de lectura y vigencia mediante un contrato compartido aún no acordado.
+The central display and message transport are outside this pilot. A future integration should convey source, type, severity, observation time, and validity through a shared contract that has not yet been agreed.
 
-## Ubicación y protección: decisión antes de elegir hardware
+## Placement and protection: decide before choosing hardware
 
-Comparar al menos dos puntos de montaje posibles junto al tendedero. Para cada uno, registrar con foto o croquis:
+Compare at least two possible mounting points near the drying area. For each, record a photo or sketch covering:
 
-1. Distancia y altura respecto de la ropa; si recibe agua cuando la ropa la recibe y si queda bajo un techo o borde distinto.
-2. Exposición a lluvia con viento, goteo desde arriba, riego, salpicaduras y condensación.
-3. Espacio de paso en el balcón, estabilidad de la sujeción y acceso para activar «hay ropa afuera».
-4. Ruta del agua lejos de la electrónica, necesidad de mantener expuesta la zona que detecta lluvia y acceso para mantenimiento.
-5. Alcance de la señal local desde dentro del departamento y posible ubicación de la alimentación.
+1. Distance and height relative to the laundry; whether water reaches it when water reaches the laundry; and whether it sits under a different roof or edge.
+2. Exposure to wind-driven rain, dripping from above, watering, splashes, and condensation.
+3. Walking space on the balcony, mounting stability, and access to the “laundry outside” control.
+4. A path that keeps water away from electronics, the need to expose the rain-sensing area, and maintenance access.
+5. Whether the local signal can be perceived from inside the apartment and where power might be placed.
 
-No se elegirá una placa, sensor, carcasa definitiva ni alimentación hasta revisar estos puntos y las primeras observaciones en el lugar. Ninguna pieza energizada se expondrá al agua durante la exploración inicial.
+Do not choose a board, sensor, final enclosure, or power arrangement until these points and initial observations at the location have been reviewed. No powered component will be exposed to water during initial exploration.
 
-## Modo «hay ropa afuera»
+## “Laundry outside” mode
 
-La activación manual es la referencia inicial. No se inferirá la presencia de ropa a partir de humedad o lluvia. Antes de implementar, decidir si el mando será un interruptor de posición o un botón con indicador; en ambos casos, la persona debe poder reconocer el estado vigente. Tras un reinicio, el estado no debe quedar ambiguo ni pasar silenciosamente a «sin ropa»: se probará cómo se conserva o se pide confirmación.
+Manual activation is the starting reference. Laundry presence will not be inferred from moisture or rain. Before implementation, decide whether the control is a position switch or a button with an indicator; in either case, the person must be able to recognize the active state. After a restart, the state must not become ambiguous or silently switch to “no laundry”: test whether it is retained or requires confirmation.
 
-Riesgo de uso: olvidar activar el modo al tender, o dejarlo activo después de retirar la ropa. Registrar ambos errores en las pruebas de uso; una detección automática solo se considerará si aportara una mejora demostrable.
+Usage risks include forgetting to activate the mode when hanging laundry or leaving it active after removing laundry. Record both errors in user tests. Consider automatic detection only if it demonstrates a useful improvement.
 
-## Regla de aviso y falsas alarmas
+## Alert rule and false alarms
 
-«Lluvia sostenida» significa una lectura compatible con lluvia durante un intervalo que todavía debe calibrarse en el balcón. Una única gota o salpicadura breve no bastará por sí sola. Se observarán por separado lluvia que alcanza la ropa, lluvia que solo alcanza el sensor, goteo desde una superficie, salpicadura, condensación y secado del sensor. La duración, intensidad y condiciones de restablecimiento se fijarán a partir de esas observaciones, sin inventar umbrales antes de medir.
+“Sustained rain” means a rain-compatible reading over an interval that still needs calibration on the balcony. A single drop or brief splash is not enough by itself. Observe separately rain that reaches the laundry, rain that reaches only the sensor, dripping from a surface, splashing, condensation, and sensor drying. Set duration, intensity, and reset conditions from those observations rather than inventing thresholds before measuring.
 
-La señal local debe seguir siendo el resultado del piloto aunque no exista red. Si en una etapa posterior se envían mensajes, una lectura sin hora válida o fuera de su vigencia no deberá presentarse como lluvia actual.
+The local signal remains the pilot outcome even without a network. If messages are added later, a reading without a valid timestamp or outside its validity period must not be displayed as current rain.
 
-## Plan de primera validación
+## First validation plan
 
-Primero observar el lugar sin electrónica energizada. Anotar fecha, hora, ubicación, condición del clima, presencia real de ropa y qué zonas se mojaron. Una aplicación controlada de agua puede comprobar el comportamiento del sensor, pero se registrará como simulación y no como lluvia real.
+Observe the location without powered electronics first. Record date, time, placement, weather, actual laundry presence, and which areas became wet. Controlled application of water may check sensor behavior, but it must be recorded as a simulation rather than real rain.
 
-| Escenario | Resultado esperado |
+| Scenario | Expected result |
 | --- | --- |
-| Agua sostenida en una ubicación que representa la exposición de la ropa; modo activo | Una señal local reconocible; registrar tiempo hasta el aviso. |
-| Misma condición; modo inactivo | Sin aviso para entrar ropa. |
-| Salpicadura breve aislada | No convertirse automáticamente en aviso de lluvia sostenida. |
-| Condensación o goteo desde arriba | Registrar si provocan aviso y si corresponden a un riesgo real para la ropa. |
-| Agua en la ropa pero no en el punto de medición | Identificar un fallo de ubicación; no declarar que el punto elegido sirve. |
-| Medición interrumpida o antigua | Mostrar estado desconocido, distinto de seco. |
-| Reinicio con ropa afuera | Estado manual comprensible y verificable; registrar si exige confirmación. |
-| Aviso activo mientras continúa la lluvia | No repetirlo continuamente; documentar cómo se silencia y restablece. |
+| Sustained water at a point representative of laundry exposure; mode active | One recognizable local signal; record time to alert. |
+| Same condition; mode inactive | No bring-in-laundry alert. |
+| Isolated brief splash | Does not automatically become a sustained-rain alert. |
+| Condensation or dripping from above | Record whether they trigger an alert and whether they pose a real risk to the laundry. |
+| Water reaches the laundry but not the sensing point | Identify a placement failure; do not claim the chosen point works. |
+| Measurement interrupted or stale | Show unknown, distinct from dry. |
+| Restart while laundry is outside | Manual state remains understandable and verifiable; record whether confirmation is needed. |
+| Alert active while rain continues | Do not repeat continuously; document how it is silenced and reset. |
 
-En cada ensayo registrar configuración, resultado observado, tiempo de respuesta, fotos o video cuando sea útil y cualquier falso aviso u omisión. Los criterios numéricos de tiempo y tasa de falsas alarmas se acordarán después de la primera observación, antes de dar el piloto por aceptado.
+For each trial, record configuration, observed result, response time, photos or video when useful, and any false alert or missed alert. Numerical criteria for response time and false-alert rate will be agreed after the first observation, before accepting the pilot.
 
-## Criterios para pasar a diseño de hardware
+## Criteria for moving to hardware design
 
-- Existe una ubicación candidata respaldada por observaciones de exposición de sensor y ropa.
-- El estado manual y la señal local son claros en la escena de uso.
-- Se conocen al menos las fuentes principales de falsos avisos y omisiones del lugar.
-- Hay una forma de distinguir lectura vigente, lectura antigua y fallo.
-- Quedan definidos los criterios medibles de aceptación para el prototipo.
+- A candidate placement is backed by observations of sensor and laundry exposure.
+- The manual state and local signal are clear in the use setting.
+- The main sources of false alerts and missed alerts at the location are known.
+- There is a way to distinguish current readings, stale readings, and failure.
+- Measurable acceptance criteria for the prototype have been defined.
 
-## Fuera de alcance por ahora
+## Out of scope for now
 
-Pronóstico meteorológico, afirmar que la ropa está seca, detección automática de ropa, compra de componentes e integración con la pantalla central.
+Weather forecasting, claiming that laundry is dry, automatic laundry detection, component purchasing, and central-display integration.
