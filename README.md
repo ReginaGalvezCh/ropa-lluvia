@@ -1,26 +1,25 @@
-# Aviso de lluvia para ropa tendida
+# Rain Alert for Hanging Laundry
 
-Proyecto independiente para avisar cuando hay ropa expuesta y se detecta lluvia relevante. El primer piloto utiliza una indicación manual de «hay ropa» y una alerta local.
+An independent project to warn when laundry is exposed and relevant rain is detected. The first pilot uses a manual “laundry outside” state and a local alert.
 
-## Estado
+## Status
 
-Definición inicial. Sin sensor de lluvia, ubicación ni prototipo validados.
+Initial definition. No rain sensor, placement, or physical prototype has been validated.
 
-## Primer alcance
+## Initial scope
 
-- Activar o desactivar manualmente el estado «hay ropa tendida».
-- Detectar lluvia sostenida con una regla que se pruebe en el lugar real.
-- Avisar localmente solo cuando ambos estados coincidan.
-- Mostrar estado desconocido si falla la medición o está desactualizada.
-- Considerar luego el aviso en la pantalla central.
+- Manually switch the “laundry outside” state on or off.
+- Detect sustained rain using a rule tested at the real location.
+- Alert locally only when laundry is outside and rain is relevant.
+- Show an unknown state if measurement fails or becomes stale.
+- Consider a central-display alert later.
 
-## Documentos
+## Documents
 
-- [Especificación del piloto](specs/001-alerta-lluvia/spec.md).
-- [Método y arquitectura compartida](docs/metodologia.md).
-- [Coordinación general en Notion](https://app.notion.com/p/416504754f0881afaaa6e4297e39c813).
+- [Pilot specification](specs/001-alerta-lluvia/spec.md).
+- [Shared method and architecture](docs/metodologia.md).
+- [Program coordination in Notion](https://app.notion.com/p/416504754f0881afaaa6e4297e39c813).
 
-## Próximas decisiones
+## Next decisions
 
-Ubicación del sensor, protección, alimentación, forma de activación, regla para lluvia sostenida, alerta local y manejo de salpicaduras o condensación.
-
+Sensor placement, protection, power, manual control, sustained-rain rule, local signal, and handling of splashes or condensation.
